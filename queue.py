@@ -19,8 +19,11 @@ class Queue(object):
     def enqueue(self, name):
         self.list.append(name)
 
-    def dequque(self):
-        return self.list.pop(0)
+    def dequeue(self):
+        if len(self.list)==0:
+            raise EmptyQueueError("dequeue from empty queue")
+        else:
+            return self.list.pop(0)
 
     def isEmpty(self):
         if len(self.list)==0:
@@ -28,9 +31,16 @@ class Queue(object):
         else:
             return False
 
+class EmptyQueueError(Exception):
+    pass
+
 appts = Queue()
 appts.enqueue("John")
 appts.enqueue("valod")
 appts.enqueue("vaxarshak")
-print (appts.dequque())
+print (appts.dequeue())
 print (appts.isEmpty())
+
+
+queue=Queue()
+queue.dequeue()
